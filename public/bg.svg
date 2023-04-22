@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden='true' width='100%' height='100%' viewBox='00 1400 800'>
+  <rect x='1200' y='400' rx='40' ry='40' width='150' height='150' fill='#4096ff' >
+  <animateTransform attributeType='XML' attributeName='transform' begin='0s' dur='30s' type='rotate'
+  from='0 1400 550' to='360 1400 550' repeatCount='indefinite'></animateTransform>
+  </rect>
+
+  <circle cx='1200' cy='600' r='30' fill='#73d13d' >
+  <animateMotion dur='10s' repeatCount='indefinite' path='M 0 0 L -20 40 Z'></animateMotion>
+  </circle>
+</svg>
