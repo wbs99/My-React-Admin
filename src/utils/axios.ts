@@ -1,6 +1,7 @@
 import { message } from 'antd'
 import Axios from 'axios'
 import type { InternalAxiosRequestConfig } from 'axios'
+import { storage } from './storage'
 
 
 export const axios = Axios.create({
@@ -10,6 +11,10 @@ export const axios = Axios.create({
 axios.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     config.headers.apiKey = import.meta.env.VITE_API_KEY
+    const token = storage.getToken()
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
     return config
   }
 )
@@ -21,6 +26,10 @@ axios.interceptors.response.use(
       return data.data
     } else {
       message.error(data.message)
+      if (data.code === -666) {
+        storage.removeToken()
+        window.location.href = '/login'
+      }
       return Promise.reject(data)
     }
   },

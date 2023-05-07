@@ -1,12 +1,17 @@
-import { Button, Form, Input, Space } from "antd"
+import { Button, Form, Input, Space, message } from "antd"
 import './LoginPage.css'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { useState } from "react"
 import SparkMd5 from 'spark-md5'
 import { loginApi } from "../api/user"
+import { useNavigate } from "react-router-dom"
+import { storage } from "../utils/storage"
+import { useMeStore } from "../stores/useMeStore"
 
 
 export const LoginPage = () => {
+  const { setMe } = useMeStore()
+  const navigate = useNavigate()
   const [form] = Form.useForm()
   const onFinish = async (values: LoginForm) => {
     const obj = {
@@ -14,17 +19,13 @@ export const LoginPage = () => {
       passwd: SparkMd5.hash(values.passwd),
       captcha: values.captcha,
     }
-    const response = loginApi(obj)
-    console.log(response)
-  }
-  const onTest = () => {
-    fetch('api/user/hi', {
-      headers: {
-        'apiKey': 'dasheng123',
-      }
-    }).then(res => res.json()).then(res => {
-      console.log(res)
-    })
+    const response = await loginApi(obj)
+    if (response.token) {
+      storage.setToken(response.token)
+      message.success('登录成功')
+      navigate('/dashboard')
+      setMe(response)
+    }
   }
 
   const [captcha, setCaptcha] = useState('/api/captcha')
@@ -73,7 +74,6 @@ export const LoginPage = () => {
           </Form.Item>
           <Form.Item >
             <Button type="primary" htmlType="submit">登录</Button>
-            <Button onClick={onTest}>测试</Button>
           </Form.Item>
         </Form>
       </div>
