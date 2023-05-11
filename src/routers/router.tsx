@@ -1,6 +1,5 @@
 import { Navigate, useRoutes } from "react-router-dom"
 import { LoginPage } from "../pages/LoginPage"
-import { DashboardPage } from "../pages/DashboardPage"
 import { NotFoundPage } from "../pages/NotFoundPage"
 
 
@@ -16,7 +15,7 @@ Object.keys(authRoutes).map((item) => {
   dynamicRoutes.push(...module)
 })
 
-const rootRouter = [
+export const rootRouter = [
   ...dynamicRoutes,
   {
     path: '/',
@@ -24,15 +23,21 @@ const rootRouter = [
   },
   {
     path: '/login',
-    element: <LoginPage />
-  },
-  {
-    path: '/dashboard',
-    element: <DashboardPage />,
+    element: <LoginPage />,
+    meta: {
+      auth: false,
+      title: '登录',
+      key: 'login'
+    }
   },
   {
     path: '/404',
     element: <NotFoundPage />,
+    meta: {
+      auth: false,
+      title: 'Not Found',
+      key: 'Not Found'
+    }
   },
   {
     path: '*',
