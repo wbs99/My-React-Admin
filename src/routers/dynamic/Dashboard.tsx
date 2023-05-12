@@ -1,5 +1,7 @@
 import { DashboardOutlined } from "@ant-design/icons";
 import { LayoutApp } from "../../layout/LayoutApp";
+import { lazy } from "react";
+import { LazyLoad } from "../LazyLoad";
 
 const DashboradRouter: MyRouterObject[] = [
   {
@@ -14,7 +16,7 @@ const DashboradRouter: MyRouterObject[] = [
     children: [
       {
         path: 'index',
-        element: <div>Dashboard 首页</div>,
+        element: LazyLoad(lazy(() => import('../../pages/DashboardPage'))),
         meta: {
           title: 'Dashboard 首页',
           key: 'dashboard'
