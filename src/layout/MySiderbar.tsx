@@ -1,6 +1,8 @@
 import { Layout, Menu, MenuProps } from "antd"
 import { useLocation, useNavigate } from "react-router-dom"
 import { absolutePthRoutes } from "../routers/router"
+import { useEffect, useState } from "react"
+import { getSiderbarOpenKey } from "../utils/getSiderbarOpenKey"
 
 const { Sider } = Layout
 
@@ -23,6 +25,15 @@ export const MySiderbar = () => {
       })
     }
   })
+
+  const [openKeys, setOpenKeys] = useState(getSiderbarOpenKey(pathname))
+  const onMenuOpenChange: MenuProps['onOpenChange'] = (paths) => {
+    setOpenKeys(paths)
+  }
+  useEffect(() => {
+    setOpenKeys(getSiderbarOpenKey(pathname))
+  }, [pathname])
+
   const onClickMenu: MenuProps['onClick'] = ({ key }) => {
     navigate(key)
   }
@@ -32,9 +43,11 @@ export const MySiderbar = () => {
       <Menu
         selectedKeys={[pathname]}
         items={items}
+        openKeys={openKeys}
         mode='inline'
         style={{ height: '100%' }}
         onClick={onClickMenu}
+        onOpenChange={onMenuOpenChange}
       >
       </Menu>
     </Sider>

@@ -4,7 +4,7 @@ import { useMeStore } from "../stores/useMeStore"
 const { Header } = Layout
 
 
-const MyHeaderStyle: React.CSSProperties = {
+export const MyHeaderStyle: React.CSSProperties = {
   textAlign: 'center',
   color: '#ffffff',
   height: 64,
