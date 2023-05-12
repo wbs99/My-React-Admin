@@ -15,7 +15,7 @@ Object.keys(authRoutes).map((item) => {
   })
   dynamicRoutes.push(...module)
 })
-const absolutePthRoutes = normiorizeRoute(dynamicRoutes)
+export const absolutePthRoutes = normiorizeRoute(dynamicRoutes)
 
 export const rootRouter = [
   ...absolutePthRoutes,

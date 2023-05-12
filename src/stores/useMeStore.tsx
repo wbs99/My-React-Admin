@@ -6,12 +6,10 @@ type Me = {
   setMe: (data: LoginResponse) => void
 }
 
-
-
 export const useMeStore = create<Me>()(
   devtools(
     persist(
-      (set, get) => ({
+      (set) => ({
         me: {
           _id: '',
           email: '',

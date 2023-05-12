@@ -15,11 +15,19 @@ const FormRouter: MyRouterObject[] = [
       {
         path: 'validate',
         element: <div>校验表单</div>,
+        meta: {
+          title: '校验表单',
+          key: 'validateForm'
+        }
       },
       {
         path: 'step',
-        element: <div>分布表单</div>,
-      },
+        element: <div>分步表单</div>,
+        meta: {
+          title: '分步表单',
+          key: 'stepForm'
+        }
+      }
     ]
   }
 ]

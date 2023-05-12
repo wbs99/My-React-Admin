@@ -15,11 +15,19 @@ const DashboradRouter: MyRouterObject[] = [
       {
         path: 'index',
         element: <div>Dashboard 首页</div>,
+        meta: {
+          title: 'Dashboard 首页',
+          key: 'dashboard'
+        }
       },
       {
         path: '/dashboard/upload',
         element: <div>大文件上传</div>,
-      },
+        meta: {
+          title: '大文件上传',
+          key: 'upload'
+        }
+      }
     ]
   }
 ]
