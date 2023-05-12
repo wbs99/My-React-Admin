@@ -26,8 +26,6 @@ export const AuthRouter = ({ children }: { children: JSX.Element }) => {
   const { pathname } = useLocation()
 
   const route = searchRoutes(pathname, rootRouter)
-  console.log('route')
-  console.log(route)
   if (route.meta?.auth === false) {
     return children
   }

@@ -1,6 +1,7 @@
 import { Navigate, useRoutes } from "react-router-dom"
 import { LoginPage } from "../pages/LoginPage"
 import { NotFoundPage } from "../pages/NotFoundPage"
+import { normiorizeRoute } from "./normiorizeRoute"
 
 
 const dynamicRoutes: MyRouterObject[] = []
@@ -14,9 +15,10 @@ Object.keys(authRoutes).map((item) => {
   })
   dynamicRoutes.push(...module)
 })
+const absolutePthRoutes = normiorizeRoute(dynamicRoutes)
 
 export const rootRouter = [
-  ...dynamicRoutes,
+  ...absolutePthRoutes,
   {
     path: '/',
     element: <Navigate to="/dashboard" replace />,
