@@ -15,7 +15,7 @@ const FooterStyle: React.CSSProperties = {
 const ContentStyle = {
   padding: 10,
   backgroundColor: '#eee',
-  minHeight: `calc(100vh - ${MyHeaderStyle.height}px - ${FooterStyle.height}px)`
+  minHeight: `calc(100vh - ${MyHeaderStyle.height}px - ${FooterStyle.height}px)`,
 }
 
 export const LayoutApp = () => {
